@@ -5,7 +5,6 @@
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -16,19 +15,35 @@ public class Nd11 {
         //findLargestCommonDivisor();
         // findSmallestCommonIterativ();
 
-       // arrayIntsToNumber(task3());//makes  from number array (length 10) the largest number
+        // arrayIntsToNumber(task3());//makes  from number array (length 10) the largest number
         // System.out.println(Arrays.toString());
-        task4();//array3[i]=array1[i]+array2[i]
+         task4();//array3[i]=array1[i]+array2[i]
+       // task5(); //searching and counting Words
+
+    }
+
+    private static void task5() {
+        String text = " The good day for teaching ...Every day ";
+        String searchingWord = "day";
+        String[] textArray;
+        textArray = text.split(" ");
+        int counter = 0;
+        for (String s : textArray) {
+            if (searchingWord.equals(s)) {
+                counter++;
+            }
+        }
+        System.out.println(counter);
     }
 
     public static void task4() {
-        int[] array1 = new int[10];
+        int[] array1;
         array1 = fillArray();
-        int[] array2 = new int[10];
+        int[] array2 ;
         array2 = fillArray();
-        int [] array3 = new int[10];
-        for (int i = 0; i<array1.length; i++) {
-            array3[i]= array1[i] + array2[i];
+        int[] array3 = new int[10];
+        for (int i = 0; i < array1.length; i++) {
+            array3[i] = array1[i] + array2[i];
         }
         System.out.println(Arrays.toString(array3));
     }
@@ -56,7 +71,6 @@ public class Nd11 {
         StringBuilder stringBuilder = new StringBuilder();
         String numberString = "";
         for (int i = 0; i < nums.length; i++) {
-            //    numberString.concat(Integer.toString(nums[i]));
             stringBuilder.append(nums[i]);
         }
         BigInteger number = new BigInteger(String.valueOf(stringBuilder));
