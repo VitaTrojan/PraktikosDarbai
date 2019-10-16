@@ -1,4 +1,12 @@
-import java.lang.reflect.Array;
+/*
+@autor Vita
+
+*/
+
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Nd11 {
@@ -6,26 +14,85 @@ public class Nd11 {
     public static void main(String[] args) {
 
         //findLargestCommonDivisor();
-        findSmallestCommonIterativ();
+        // findSmallestCommonIterativ();
+
+       // arrayIntsToNumber(task3());//makes  from number array (length 10) the largest number
+        // System.out.println(Arrays.toString());
+        task4();//array3[i]=array1[i]+array2[i]
     }
 
-    public static void  findSmallestCommonIterativ(){
+    public static void task4() {
+        int[] array1 = new int[10];
+        array1 = fillArray();
+        int[] array2 = new int[10];
+        array2 = fillArray();
+        int [] array3 = new int[10];
+        for (int i = 0; i<array1.length; i++) {
+            array3[i]= array1[i] + array2[i];
+        }
+        System.out.println(Arrays.toString(array3));
+    }
+
+    public static int[] task3() {
+        int[] array = new int[10];
+        array = fillArray();
+        for (int i = 0; i < array.length - 1; i++) {
+            for (int j = 0; j < array.length - 1; j++) {
+                String first = Integer.toString(array[j]);
+                String second = Integer.toString(array[j + 1]);
+                if ((Integer.parseInt(second + first)) > (Integer.parseInt(first + second))) {
+                    int tmp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = tmp;
+                }
+
+            }
+        }
+        System.out.println(Arrays.toString(array));
+        return array;
+    }
+
+    private static BigInteger arrayIntsToNumber(int[] nums) {
+        StringBuilder stringBuilder = new StringBuilder();
+        String numberString = "";
+        for (int i = 0; i < nums.length; i++) {
+            //    numberString.concat(Integer.toString(nums[i]));
+            stringBuilder.append(nums[i]);
+        }
+        BigInteger number = new BigInteger(String.valueOf(stringBuilder));
+        System.out.println(number);
+        return number;
+
+    }
+
+    private static int[] fillArray() {
+        Random random = new Random();
+        int[] numbers = new int[10];
+        for (int i = 0; i < 10; i++) {
+            numbers[i] = random.nextInt(1000);
+        }
+        System.out.println(Arrays.toString(numbers));
+        return numbers;
+    }
+
+    public static void findSmallestCommonIterativ() {
         System.out.println("Iveskite skaicius, kuriu MBK norite rasi:");
         Scanner scanner = new Scanner(System.in);
         int firstNumber = scanner.nextInt();
         int secondNumber = scanner.nextInt();
-        int biggestNumber= Math.max(firstNumber,secondNumber);
-        int smallerNumber=Math.min(firstNumber,secondNumber);
-        if (biggestNumber%smallerNumber == 0){
+        int biggestNumber = Math.max(firstNumber, secondNumber);
+        int smallerNumber = Math.min(firstNumber, secondNumber);
+        if (biggestNumber % smallerNumber == 0) {
             System.out.println("MBK yra: " + biggestNumber);
-        }else for(int i = 1; i < smallerNumber+1; i++ ){
+        } else for (int i = 1; i < smallerNumber + 1; i++) {
 
-            if (biggestNumber*i%smallerNumber == 0) {
-                System.out.println("MBK yra" +biggestNumber*i);
+            if (biggestNumber * i % smallerNumber == 0) {
+                System.out.println("MBK yra" + biggestNumber * i);
             }
 
         }
     }
+
     private static void findLargestCommonDivisor() {
         System.out.println("Iveskite skaicius, kuriu DBD norite rasi:");
         Scanner scanner = new Scanner(System.in);
